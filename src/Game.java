@@ -8,10 +8,6 @@ public class Game {
         frame.mineSweeper();
     }
 
-    static void gameOver(){
-
-    }
-
     static void gameWin(){
         frame.dispose();
         frame = new MainFrame();
