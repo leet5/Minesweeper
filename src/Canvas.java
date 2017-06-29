@@ -134,7 +134,6 @@ public class Canvas extends JPanel {
                                     for (Cell cellOne : c1)
                                         cellOne.changeReveal();
                                 repaint();
-                                Game.gameOver();
                             }
                             else {
                                 try {
