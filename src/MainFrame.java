@@ -22,9 +22,9 @@ class MainFrame extends JFrame {
         public void actionPerformed(ActionEvent event)
         {
             if(name.equals("New")) {Game.newGame();}
-            if(name.equals("Easy")){Canvas.setMines(10);Game.newGame();}
-            if(name.equals("Normal")){Canvas.setMines(6);Game.newGame();}
-            if(name.equals("Hard")){Canvas.setMines(3);Game.newGame();}
+            if(name.equals("Easy")){Canvas.setDifficulty(0);Game.newGame();}
+            if(name.equals("Normal")){Canvas.setDifficulty(1);Game.newGame();}
+            if(name.equals("Hard")){Canvas.setDifficulty(2);Game.newGame();}
         }
     }
 

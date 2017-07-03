@@ -15,8 +15,8 @@ public class Canvas extends JPanel
     private Image flag = new ImageIcon("res/flag.png").getImage();
     Mouse mouse = new Mouse();
 
-    static final int WIDTH = 512;
-    static final int HEIGHT = 512;
+    static  int WIDTH = Cell.SCALE * 9;
+    static  int HEIGHT = Cell.SCALE * 9;
     private static int cellsX = WIDTH / Cell.SCALE;
     private static int cellsY = HEIGHT / Cell.SCALE;
     private static Cell[][] grid = new Cell[cellsX][cellsY];
@@ -34,8 +34,41 @@ public class Canvas extends JPanel
     private static Clip clpExplosion;
 
 
-    public static void setMines(int x){
-        mines = cellsX * cellsY / x;
+    public static int getMines() {
+        return mines;
+    }
+
+    public static void setDifficulty(int x){
+        switch (x)
+        {
+            case 1 : {
+                mines = 40;
+                WIDTH = Cell.SCALE * 16;
+                HEIGHT = Cell.SCALE * 16;
+                cellsX = WIDTH / Cell.SCALE;
+                cellsY = HEIGHT / Cell.SCALE;
+                grid = new Cell[cellsX][cellsY];
+                break;
+            }
+            case 2 : {
+                mines = 99;
+                WIDTH = Cell.SCALE * 30;
+                HEIGHT = Cell.SCALE * 16;
+                cellsX = WIDTH / Cell.SCALE;
+                 cellsY = HEIGHT / Cell.SCALE;
+                grid = new Cell[cellsX][cellsY];
+                break;
+            }
+            default : {
+                mines = 10;
+                WIDTH = Cell.SCALE * 9;
+                HEIGHT = Cell.SCALE * 9;
+                int cellsX = WIDTH / Cell.SCALE;
+                int cellsY = HEIGHT / Cell.SCALE;
+                grid = new Cell[cellsX][cellsY];
+                break;
+            }
+        }
     }
 
     {
@@ -130,6 +163,7 @@ public class Canvas extends JPanel
         @SuppressWarnings("Duplicates")
         public void mouseReleased(MouseEvent e) {
             int count = 0;
+            flag = 0;
             int x = e.getX();
             int y = e.getY();
             if (e.getButton() == 1) {
@@ -167,10 +201,9 @@ public class Canvas extends JPanel
             if (e.getButton() == 3) {
                 for (Cell[] c : grid) {
                     for (Cell cell : c) {
-                        if (cell.getX() < x && cell.getX() + Cell.SCALE > x && cell.getY() < y && cell.getY() + Cell.SCALE > y){
+                        if (cell.getX() < x && cell.getX() + Cell.SCALE > x && cell.getY() < y && cell.getY() + Cell.SCALE > y)
                             cell.setFlag();
-                            flag++;
-                        }
+
                     }
                 }
                 try {
@@ -182,10 +215,14 @@ public class Canvas extends JPanel
                 }
             }
             for (Cell[] c : grid)
-                for (Cell cell : c)
+                for (Cell cell : c){
                     if (cell.isRevealed())
                         count++;
-            if (count == cellsX * cellsY - mines)
+                    if(cell.isFlag())
+                        flag++;
+            }
+
+                        if (count == cellsX * cellsY - mines)
                 Game.gameWin();
             if (count == 1)
                 MainPanel.beginSchedule();

@@ -17,7 +17,8 @@ public class MainPanel extends JPanel{
         setBackground(new Color(51, 51, 51));
         setLayout(new GridLayout(1, 3));
         labelSet();
-        add(timeLabel, BorderLayout.NORTH);
+
+        add(timeLabel);
         add(button);
         add(mineLabel);
     }
@@ -36,24 +37,26 @@ public class MainPanel extends JPanel{
 
     private void labelSet()
     {
-        timeLabel.setText("0");
+        timeLabel.setText("Time:0");
         timeLabel.setName("0");
-        Font font = new Font("monospaced", Font.PLAIN, 32);
+        Font font = new Font("monospaced", Font.PLAIN, Canvas.getCellsX() * 2 - 2);
         timeLabel.setFont(font);
         timeLabel.setForeground(new Color(255,255,255));
+        timeLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        mineLabel.setText("0");
+        mineLabel.setText("Mines:" + Canvas.getMines());
         mineLabel.setName("0");
-        Font font1 = new Font("monospaced", Font.PLAIN, 32);
+        Font font1 = new Font("monospaced", Font.PLAIN, Canvas.getCellsX() * 2 - 2);
         mineLabel.setFont(font1);
         mineLabel.setForeground(new Color(255,255,255));
+        mineLabel.setHorizontalAlignment(SwingConstants.CENTER);
     }
 
     static class MyTimerTask extends TimerTask{
         @Override
         public void run() {
-            mineLabel.setText(MainFrame.getCanvas().getMouse().getFlag() + "");
-            timeLabel.setText(counter + "");
+            mineLabel.setText("Mines:" + (Canvas.getMines() - MainFrame.getCanvas().getMouse().getFlag()));
+            timeLabel.setText("Time:" + counter);
             counter++;
         }
     }
