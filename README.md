@@ -1,4 +1,4 @@
 # minesweeper
 Finally, my own minesweeper
 
-Looks nice
+Hmm, restart button isn't work.
