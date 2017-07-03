@@ -11,7 +11,7 @@ public class MainPanel extends JPanel{
     private static JLabel timeLabel = new JLabel();
     private static JLabel mineLabel = new JLabel();
     private static JButton button = new JButton("Restart");
-    private static int counter = 0;
+    private static int counter = 1;
 
     MainPanel() {
         taskT = new MyTimerTask();
@@ -38,6 +38,7 @@ public class MainPanel extends JPanel{
 
      static void setCounter(int counter) {
         MainPanel.counter = counter;
+        MainPanel.counter++;
     }
 
     static void beginSchedule(){
@@ -49,17 +50,19 @@ public class MainPanel extends JPanel{
     {
         timeLabel.setText("Time:0");
         timeLabel.setName("0");
-        Font font = new Font("monospaced", Font.PLAIN, Canvas.getCellsX() * 2 - 2);
+        Font font = new Font("Georgia", Font.PLAIN, Canvas.getCellsX() * 2 - 2);
         timeLabel.setFont(font);
         timeLabel.setForeground(new Color(255,255,255));
         timeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        timeLabel.setVerticalAlignment(SwingConstants.CENTER);
 
         mineLabel.setText("Mines:" + Canvas.getMines());
         mineLabel.setName("0");
-        Font font1 = new Font("monospaced", Font.PLAIN, Canvas.getCellsX() * 2 - 2);
+        Font font1 = new Font("Georgia", Font.PLAIN, Canvas.getCellsX() * 2 - 2);
         mineLabel.setFont(font1);
         mineLabel.setForeground(new Color(255,255,255));
         mineLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        mineLabel.setVerticalAlignment(SwingConstants.CENTER);
     }
 
     static class MyTimerTask extends TimerTask{
