@@ -5,9 +5,9 @@ import java.awt.event.MouseAdapter;
 
 
 class MainFrame extends JFrame {
-    private static GameOverPanel panel;
-
+    private static MainPanel panel;
     private JPopupMenu popup;
+    private static Canvas canvas;
 
     class TestAction extends AbstractAction
     {
@@ -30,14 +30,11 @@ class MainFrame extends JFrame {
 
 
     MainFrame() throws HeadlessException {
-        setAlwaysOnTop(true);
-        setFocusable(true);
         setTitle("Minesweeper");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
-        panel = new GameOverPanel();
+        panel = new MainPanel();
         add(panel, BorderLayout.NORTH);
-
 
         JMenu fileMenu = new JMenu("Game");
         fileMenu.add(new MainFrame.TestAction("New"));
@@ -70,8 +67,13 @@ class MainFrame extends JFrame {
         panel.addMouseListener(new MouseAdapter() {});
     }
 
+    public static Canvas getCanvas() {
+        return canvas;
+    }
+
     void mineSweeper() {
-        add(new Canvas());
+        canvas = new Canvas();
+        add(canvas);
         pack();
         setLocationRelativeTo(null);
     }
