@@ -32,7 +32,7 @@ class MainFrame extends JFrame {
     MainFrame() throws HeadlessException {
         setTitle("Minesweeper");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setVisible(true);
+
         panel = new MainPanel();
         add(panel, BorderLayout.NORTH);
 
@@ -65,6 +65,7 @@ class MainFrame extends JFrame {
         add(panel);
 
         panel.addMouseListener(new MouseAdapter() {});
+
     }
 
     public static Canvas getCanvas() {
@@ -76,6 +77,7 @@ class MainFrame extends JFrame {
         add(canvas);
         pack();
         setLocationRelativeTo(null);
+        setVisible(true);
     }
 
     void winTheGame() {

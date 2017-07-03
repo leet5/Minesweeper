@@ -4,16 +4,21 @@ import java.util.*;
 import java.util.Timer;
 
 public class MainPanel extends JPanel{
-    private static TimerTask task;
+    private static TimerTask taskT;
+    private static TimerTask taskM;
     private static Timer t;
+    private static Timer m;
     private static JLabel timeLabel = new JLabel();
     private static JLabel mineLabel = new JLabel();
     private static JButton button = new JButton("Restart");
     private static int counter = 0;
 
     MainPanel() {
-        task = new MyTimerTask();
+        taskT = new MyTimerTask();
+        taskM = new MyMinesTask();
         t = new Timer(true);
+        m = new Timer(true);
+
         setBackground(new Color(51, 51, 51));
         setLayout(new GridLayout(1, 3));
         labelSet();
@@ -27,12 +32,17 @@ public class MainPanel extends JPanel{
         return t;
     }
 
-    public static void setCounter(int counter) {
+     static Timer getM() {
+        return m;
+    }
+
+     static void setCounter(int counter) {
         MainPanel.counter = counter;
     }
 
     static void beginSchedule(){
-        t.scheduleAtFixedRate(task, 0, 1000);
+        t.scheduleAtFixedRate(taskT, 0, 1000);
+        m.scheduleAtFixedRate(taskM, 0, 1);
     }
 
     private void labelSet()
@@ -55,9 +65,15 @@ public class MainPanel extends JPanel{
     static class MyTimerTask extends TimerTask{
         @Override
         public void run() {
-            mineLabel.setText("Mines:" + (Canvas.getMines() - MainFrame.getCanvas().getMouse().getFlag()));
             timeLabel.setText("Time:" + counter);
             counter++;
+        }
+    }
+
+    static class MyMinesTask extends TimerTask{
+        @Override
+        public void run() {
+            mineLabel.setText("Mines:" + (Canvas.getMines() - MainFrame.getCanvas().getMouse().getFlag()));
         }
     }
     @Override

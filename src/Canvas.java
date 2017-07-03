@@ -184,6 +184,7 @@ public class Canvas extends JPanel
                                         cellOne.changeReveal();
                                 repaint();
                                 MainPanel.getT().cancel();
+                                MainPanel.getM().cancel();
                             }
                             else {
                                 try {

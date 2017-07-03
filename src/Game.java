@@ -18,8 +18,9 @@ public class Game {
     static void newGame(){
         MainPanel.getT().cancel();
         MainPanel.setCounter(0);
-        Game.frame.dispose();
-        Game.frame = new MainFrame();
-        Game.frame.mineSweeper();
+
+        frame.dispose();
+        frame = new MainFrame();
+        frame.mineSweeper();
     }
 }
