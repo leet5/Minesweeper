@@ -12,12 +12,15 @@ public class Canvas extends JPanel {
     private ArrayList<Pair> options = new ArrayList<>();
     private Image mine = new ImageIcon("res/mine.png").getImage();
     private Image flag = new ImageIcon("res/flag.png").getImage();
-    public static final int WIDTH = 512;
-    public static final int HEIGHT = 512;
+
+    static final int WIDTH = 512;
+    static final int HEIGHT = 512;
     private static int cellsX = WIDTH / Cell.SCALE;
     private static int cellsY = HEIGHT / Cell.SCALE;
     private static Cell[][] grid = new Cell[cellsX][cellsY];
     private static int mines = cellsX * cellsY / 5;
+
+    //Audio files
     private static File pick = new File("res/pick.wav");
     private static File plock = new File("res/plock.wav");
     private static File explosion = new File("res/explosion.wav");
@@ -27,6 +30,11 @@ public class Canvas extends JPanel {
     private static Clip clpick;
     private static Clip clplock;
     private static Clip clpExplosion;
+
+
+    public static void setMines(int x){
+        mines = cellsX * cellsY / x;
+    }
 
     {
         for (int i = 0; i < cellsX; i++) {
@@ -49,6 +57,7 @@ public class Canvas extends JPanel {
             }
         }
 
+        //Setting bombs...
         for (int n = 0; n < mines; n++) {
             int i = (int) Math.round(Math.random() * (options.size() - 1));
             Pair pair = options.get(i);
