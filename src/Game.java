@@ -21,9 +21,6 @@ public class Game {
 
         frame.dispose();
         frame = new MainFrame();
-        try{
-            Thread.sleep(50);
-        }catch (InterruptedException e){}
         frame.mineSweeper();
     }
 }

@@ -20,7 +20,7 @@ public class Canvas extends JPanel
     private static int cellsX = WIDTH / Cell.SCALE;
     private static int cellsY = HEIGHT / Cell.SCALE;
     private static Cell[][] grid = new Cell[cellsX][cellsY];
-    private static int mines = cellsX * cellsY / 5;
+    private static int mines = 10;
 
     //Audio files
     private static File pick = new File("res/pick.wav");
@@ -63,8 +63,8 @@ public class Canvas extends JPanel
                 mines = 10;
                 WIDTH = Cell.SCALE * 9;
                 HEIGHT = Cell.SCALE * 9;
-                int cellsX = WIDTH / Cell.SCALE;
-                int cellsY = HEIGHT / Cell.SCALE;
+                cellsX = WIDTH / Cell.SCALE;
+                cellsY = HEIGHT / Cell.SCALE;
                 grid = new Cell[cellsX][cellsY];
                 break;
             }

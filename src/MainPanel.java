@@ -50,7 +50,7 @@ public class MainPanel extends JPanel{
     {
         timeLabel.setText("Time:0");
         timeLabel.setName("0");
-        Font font = new Font("Georgia", Font.PLAIN, Canvas.getCellsX() * 2 - 2);
+        Font font = new Font("PT mono", Font.PLAIN, Canvas.getCellsX() * 2 - 2);
         timeLabel.setFont(font);
         timeLabel.setForeground(new Color(255,255,255));
         timeLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -58,7 +58,7 @@ public class MainPanel extends JPanel{
 
         mineLabel.setText("Mines:" + Canvas.getMines());
         mineLabel.setName("0");
-        Font font1 = new Font("Georgia", Font.PLAIN, Canvas.getCellsX() * 2 - 2);
+        Font font1 = new Font("PT mono", Font.PLAIN, Canvas.getCellsX() * 2 - 2);
         mineLabel.setFont(font1);
         mineLabel.setForeground(new Color(255,255,255));
         mineLabel.setHorizontalAlignment(SwingConstants.CENTER);
